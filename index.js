@@ -880,12 +880,12 @@ RedisSessions = (function() {
       this.redis.zrangebyscore(`${this.redisns}SESSIONS`, "-inf", this._now(), function(err, resp) {
         if (!err && resp.length) {
           _.each(resp, function(e) {
-            var options;
-            e = e.split(':');
-            options = {
-              app: e[0],
-              token: e[1],
-              id: e[2]
+            var colonIndex = e.indexOf(':');
+            var secondColonIndex = e.indexOf(':', colonIndex + 1);
+            var options = {
+              app: e.substring(0, colonIndex),
+              token: e.substring(colonIndex + 1, secondColonIndex),
+              id: e.substring(secondColonIndex + 1)
             };
             that._kill(options, function() {});
           });
