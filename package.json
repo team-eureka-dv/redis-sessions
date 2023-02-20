@@ -1,5 +1,5 @@
 {
-  "name": "redis-sessions",
+  "name": "redis-sessions-fork",
   "description": "An advanced session store for Redis",
   "version": "3.0.0",
   "license": "MIT",
